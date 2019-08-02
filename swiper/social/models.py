@@ -35,7 +35,7 @@ class Swiped(models.Model):
         if mark not in marks:
             #raise LogicException(errors.SWIPER_ERR)#第一种抛出错误的方式
             raise errors.SwiperError  #第二种抛出错误的方法
-        if cls.objects.filter(uid=uid,sid=sid,mark=mark).exists():
+        if cls.objects.filter(uid=uid,sid=sid).exists():
             return False
         else:
             cls.objects.create(uid=uid,sid=sid,mark=mark)

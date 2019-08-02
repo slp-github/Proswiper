@@ -35,7 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
-    'social.apps.SocialConfig'
+    'social.apps.SocialConfig',
+    'vip.apps.VipConfig',
+
 ]
 
 MIDDLEWARE = [

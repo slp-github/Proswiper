@@ -5,6 +5,7 @@ from django.db import models
 
 # Create your models here.
 from libs.orm import ModelToDictMixin
+from vip.models import Vip
 
 SEXS = (
     (0, "未知"),
@@ -33,6 +34,7 @@ class User(models.Model):
     birth_day = models.IntegerField(default=1)
     avatar = models.CharField(max_length=256)
     location  = models.CharField(max_length=16,choices=LOCATIONS,default="gz")
+    vip_id = models.IntegerField(default=1)
 
     @property #将方法变成属性
     def age(self):
@@ -57,6 +59,13 @@ class User(models.Model):
         if not hasattr(self,'_profile'):
             self._profile,_ = Profile.objects.get_or_create(pk=self.id) #以User表的id作为Profile表的id ，以此建立关联
         return self._profile
+
+    @property
+    def vip(self):
+        if not hasattr(self,'_vip'):
+            self._vip  = Vip.objects.get(pk=self.vip_id)
+        return self._vip
+
     def to_dict(self):
         return {
             'uid':self.id,

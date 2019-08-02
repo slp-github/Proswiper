@@ -45,6 +45,11 @@ class LogicError(Exception):
 def gen_logic_error(name,code):
     return type(name,(LogicError,),{'code':code})
 
+
 SidError = gen_logic_error('SidError',3001)
 SwiperError = gen_logic_error('SwiperError',3002)
 SwipeLimitError = gen_logic_error('SwipeLimitError',3003)#超过次数限制
+
+
+#vip系统
+VIPPermError = gen_logic_error('VIPPermError',4001) #vip权限错误
